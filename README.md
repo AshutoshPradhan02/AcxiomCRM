@@ -19,13 +19,11 @@ The existing project launch profile runs on `http://localhost:5218`. The app ini
 
 ## Development Accounts
 
-Development bootstrap is configured only in `appsettings.Development.json`.
+The application supports the `Admin`, `Manager`, and `SalesExecutive` roles. Development accounts are initialized through local development configuration and database seeding.
 
-- Admin: `admin@acxiomcrm.local` / `Admin#12345`
-- Manager seed: `manager@acxiomcrm.local` / `Manager#12345`
-- Sales seed: `sales@acxiomcrm.local` / `Sales#12345`
+Configure development credentials locally before running the application. Do not commit passwords, secrets, or environment-specific credentials to source control.
 
-These accounts are for local evaluation only. Production credentials should be supplied through user secrets or environment-specific configuration.
+For evaluation, use the development account credentials provided separately by the project maintainer.
 
 ## Architecture
 
