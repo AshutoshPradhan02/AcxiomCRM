@@ -1,0 +1,19 @@
+@model AcxiomCRM.Web.Models.Customer
+<form method="post" class="content-card" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <input type="hidden" asp-for="CustomerId" />
+    <div class="row g-3">
+        <div class="col-md-3"><label asp-for="CustomerCode" class="form-label"></label><input asp-for="CustomerCode" class="form-control" /><span asp-validation-for="CustomerCode" class="text-danger"></span></div>
+        <div class="col-md-5"><label asp-for="CustomerName" class="form-label"></label><input asp-for="CustomerName" class="form-control" /><span asp-validation-for="CustomerName" class="text-danger"></span></div>
+        <div class="col-md-4"><label asp-for="CompanyName" class="form-label"></label><input asp-for="CompanyName" class="form-control" /><span asp-validation-for="CompanyName" class="text-danger"></span></div>
+        <div class="col-md-4"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+        <div class="col-md-4"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" /><span asp-validation-for="Phone" class="text-danger"></span></div>
+        <div class="col-md-4"><label asp-for="Status" class="form-label"></label><select asp-for="Status" asp-items="ViewBag.Statuses" class="form-select"></select><span asp-validation-for="Status" class="text-danger"></span></div>
+        <div class="col-md-4"><label asp-for="City" class="form-label"></label><input asp-for="City" class="form-control" /></div>
+        <div class="col-md-4"><label asp-for="State" class="form-label"></label><input asp-for="State" class="form-control" /></div>
+        <div class="col-md-4"><label asp-for="AssignedToId" class="form-label">Assigned owner</label><select asp-for="AssignedToId" asp-items="ViewBag.Owners" class="form-select"></select><span asp-validation-for="AssignedToId" class="text-danger"></span></div>
+        <div class="col-12"><label asp-for="Address" class="form-label"></label><textarea asp-for="Address" class="form-control" rows="2"></textarea></div>
+        <div class="col-12"><label asp-for="Notes" class="form-label"></label><textarea asp-for="Notes" class="form-control" rows="3"></textarea></div>
+    </div>
+    <div class="mt-4 d-flex gap-2"><button class="btn btn-primary" type="submit">Save</button><a class="btn btn-outline-secondary" asp-action="Index">Cancel</a></div>
+</form>

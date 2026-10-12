@@ -1,0 +1,42 @@
+@model AcxiomCRM.Web.ViewModels.DashboardViewModel
+@using System.Text.Json
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<div class="page-heading">
+    <div>
+        <h1>Dashboard</h1>
+        <p class="text-muted">Role-scoped CRM health and pipeline summary.</p>
+    </div>
+</div>
+<div class="kpi-grid">
+    <div class="kpi"><span>Total Customers</span><strong>@Model.TotalCustomers</strong></div>
+    <div class="kpi"><span>Total Leads</span><strong>@Model.TotalLeads</strong></div>
+    <div class="kpi"><span>Open Leads</span><strong>@Model.OpenLeads</strong></div>
+    <div class="kpi"><span>Open Opportunities</span><strong>@Model.OpenOpportunities</strong></div>
+    <div class="kpi"><span>Won</span><strong>@Model.WonOpportunities</strong></div>
+    <div class="kpi"><span>Lost</span><strong>@Model.LostOpportunities</strong></div>
+    <div class="kpi"><span>Pending Follow-ups</span><strong>@Model.PendingFollowUps</strong></div>
+    <div class="kpi"><span>Overdue Follow-ups</span><strong>@Model.OverdueFollowUps</strong></div>
+    <div class="kpi"><span>Open Pipeline</span><strong>@Model.TotalPipelineValue.ToString("C0")</strong></div>
+    <div class="kpi"><span>Weighted Pipeline</span><strong>@Model.WeightedPipelineValue.ToString("C0")</strong></div>
+</div>
+<div class="row g-3 mt-1">
+    <div class="col-lg-4"><div class="content-card"><h2>Lead Status</h2><canvas id="leadChart"></canvas></div></div>
+    <div class="col-lg-4"><div class="content-card"><h2>Opportunity Pipeline</h2><canvas id="stageChart"></canvas></div></div>
+    <div class="col-lg-4"><div class="content-card"><h2>Monthly Sales</h2><canvas id="salesChart"></canvas></div></div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const leadData = @Html.Raw(JsonSerializer.Serialize(Model.LeadStatusData));
+        const stageData = @Html.Raw(JsonSerializer.Serialize(Model.OpportunityStageData));
+        const salesData = @Html.Raw(JsonSerializer.Serialize(Model.MonthlySalesData));
+        function chart(id, type, data, label) {
+            new Chart(document.getElementById(id), { type, data: { labels: Object.keys(data), datasets: [{ label, data: Object.values(data), backgroundColor: ['#203747','#2E7D5B','#1F4055','#B7791F','#B42318','#526675'] }] }, options: { responsive: true, plugins: { legend: { display: type === 'doughnut' } } } });
+        }
+        chart('leadChart', 'doughnut', leadData, 'Leads');
+        chart('stageChart', 'bar', stageData, 'Opportunities');
+        chart('salesChart', 'bar', salesData, 'Won Amount');
+    </script>
+}

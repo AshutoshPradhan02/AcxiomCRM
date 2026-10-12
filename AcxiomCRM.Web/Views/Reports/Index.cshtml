@@ -1,0 +1,8 @@
+@{ ViewData["Title"] = "Reports"; }
+<div class="page-heading"><div><h1>Reports</h1><p class="text-muted">Role-scoped CRM reporting and pipeline export.</p></div><a class="btn btn-outline-primary" asp-action="PipelineCsv">Export Pipeline CSV</a></div>
+<div class="row g-3">
+<div class="col-lg-6"><div class="content-card"><h2>Customers by Status</h2><table class="table">@foreach(var r in ViewBag.CustomersByStatus){<tr><td>@r.Label</td><td>@r.Count</td></tr>}</table></div></div>
+<div class="col-lg-6"><div class="content-card"><h2>Leads by Status</h2><table class="table">@foreach(var r in ViewBag.LeadsByStatus){<tr><td>@r.Label</td><td>@r.Count</td></tr>}</table></div></div>
+<div class="col-lg-6"><div class="content-card"><h2>Follow-ups by Status</h2><table class="table">@foreach(var r in ViewBag.FollowUps){<tr><td>@r.Label</td><td>@r.Count</td></tr>}</table></div></div>
+<div class="col-lg-6"><div class="content-card"><h2>Pipeline by Stage</h2><table class="table"><thead><tr><th>Stage</th><th>Count</th><th>Weighted</th></tr></thead>@foreach(var r in ViewBag.Pipeline){<tr><td>@r.Label</td><td>@r.Count</td><td>@r.Amount.ToString("C0")</td></tr>}</table></div></div>
+</div>

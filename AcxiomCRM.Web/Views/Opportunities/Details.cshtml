@@ -1,0 +1,4 @@
+@model AcxiomCRM.Web.Models.Opportunity
+@{ ViewData["Title"] = "Opportunity Details"; }
+<div class="page-heading"><div><h1>@Model.OpportunityName</h1><p class="text-muted">@Model.Customer?.CustomerName</p></div><a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.OpportunityId">Edit</a></div>
+<div class="content-card"><dl class="row"><dt class="col-sm-3">Stage</dt><dd class="col-sm-9">@Model.Stage</dd><dt class="col-sm-3">Status</dt><dd class="col-sm-9">@Model.Status</dd><dt class="col-sm-3">Amount</dt><dd class="col-sm-9">@Model.Amount.ToString("C0")</dd><dt class="col-sm-3">Probability</dt><dd class="col-sm-9">@Model.Probability%</dd><dt class="col-sm-3">Weighted Pipeline</dt><dd class="col-sm-9">@Model.WeightedPipeline.ToString("C0")</dd><dt class="col-sm-3">Expected Close</dt><dd class="col-sm-9">@Model.ExpectedCloseDate.ToShortDateString()</dd><dt class="col-sm-3">Notes</dt><dd class="col-sm-9">@Model.Notes</dd></dl></div>

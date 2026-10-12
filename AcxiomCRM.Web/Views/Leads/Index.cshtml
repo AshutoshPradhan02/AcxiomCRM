@@ -1,0 +1,10 @@
+@model IEnumerable<AcxiomCRM.Web.Models.Lead>
+@{ ViewData["Title"] = "Leads"; }
+<div class="page-heading"><div><h1>Leads</h1><p class="text-muted">Capture, qualify, and convert prospective customers.</p></div><a class="btn btn-primary" asp-action="Create">New Lead</a></div>
+<div class="content-card">
+<form class="row g-2 mb-3" method="get"><div class="col-md-6"><input name="search" value="@ViewBag.Search" class="form-control" placeholder="Search lead or company" /></div><div class="col-md-4"><select name="status" class="form-select"><option value="">All statuses</option>@foreach (var s in ViewBag.Statuses) { <option selected="@(ViewBag.Status == s)">@s</option> }</select></div><div class="col-md-2"><button class="btn btn-outline-primary w-100">Filter</button></div></form>
+<table class="table"><thead><tr><th>Code</th><th>Lead</th><th>Company</th><th>Status</th><th>Value</th><th>Owner</th><th></th></tr></thead><tbody>
+@foreach (var l in Model) {
+<tr><td>@l.LeadCode</td><td>@l.LeadName<br /><span class="text-muted">@l.Email @l.Phone</span></td><td>@l.CompanyName</td><td><span class="badge badge-soft">@l.Status</span></td><td>@l.ExpectedValue.ToString("C0")</td><td>@l.AssignedTo?.FullName</td><td class="text-end"><a asp-action="Details" asp-route-id="@l.LeadId">Details</a><a class="ms-2" asp-action="Edit" asp-route-id="@l.LeadId">Edit</a><form asp-action="Delete" asp-route-id="@l.LeadId" method="post" class="d-inline"><button class="btn btn-link btn-sm text-danger">Lost</button></form></td></tr>
+}
+</tbody></table>@if(!Model.Any()){<div class="empty-state">No leads found.</div>}</div>

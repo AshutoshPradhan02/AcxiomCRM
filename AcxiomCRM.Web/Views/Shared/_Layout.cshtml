@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AcxiomCRM</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AcxiomCRM.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app-shell">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <aside class="sidebar">
+                <a class="brand" asp-controller="Dashboard" asp-action="Index">AcxiomCRM</a>
+                <nav>
+                    <a asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    <a asp-controller="Customers" asp-action="Index">Customers</a>
+                    <a asp-controller="Leads" asp-action="Index">Leads</a>
+                    <a asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                    <a asp-controller="FollowUps" asp-action="Index">Follow-ups</a>
+                    <a asp-controller="Activities" asp-action="Index">Activities</a>
+                    <a asp-controller="Reports" asp-action="Index">Reports</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Users" asp-action="Index">Users</a>
+                        <a asp-controller="AuditLogs" asp-action="Index">Audit Log</a>
+                    }
+                </nav>
+            </aside>
+        }
+        <div class="main-pane">
+            <header class="topbar">
+                <div class="fw-semibold">@ViewData["Title"]</div>
+                <div class="user-menu">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <span>@User.Identity.Name</span>
+                        <form asp-controller="Account" asp-action="Logout" method="post"><button class="btn btn-sm btn-outline-secondary">Logout</button></form>
+                    }
+                </div>
+            </header>
+            <main role="main" class="page-content">
+                @if (TempData["Success"] is string success) { <div class="alert alert-success">@success</div> }
+                @if (TempData["Warning"] is string warning) { <div class="alert alert-warning">@warning</div> }
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

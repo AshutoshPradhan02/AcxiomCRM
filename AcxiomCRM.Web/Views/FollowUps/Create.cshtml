@@ -1,0 +1,15 @@
+@model AcxiomCRM.Web.Models.FollowUp
+@{ ViewData["Title"] = "Schedule Follow-up"; }
+<div class="page-heading"><h1>Schedule Follow-up</h1></div>
+<form method="post" class="content-card" novalidate><div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div><div class="row g-3">
+<div class="col-md-6"><label asp-for="Subject" class="form-label"></label><input asp-for="Subject" class="form-control" /><span asp-validation-for="Subject" class="text-danger"></span></div>
+<div class="col-md-3"><label asp-for="FollowUpType" class="form-label"></label><select asp-for="FollowUpType" class="form-select"><option>Call</option><option>Meeting</option><option>Email</option><option>Task</option></select></div>
+<div class="col-md-3"><label asp-for="FollowUpDate" class="form-label"></label><input asp-for="FollowUpDate" type="datetime-local" class="form-control" /><span asp-validation-for="FollowUpDate" class="text-danger"></span></div>
+<div class="col-md-4"><label asp-for="CustomerId" class="form-label">Customer</label><select asp-for="CustomerId" asp-items="ViewBag.Customers" class="form-select"><option value="">None</option></select></div>
+<div class="col-md-4"><label asp-for="LeadId" class="form-label">Lead</label><select asp-for="LeadId" asp-items="ViewBag.Leads" class="form-select"><option value="">None</option></select></div>
+<div class="col-md-4"><label asp-for="OpportunityId" class="form-label">Opportunity</label><select asp-for="OpportunityId" asp-items="ViewBag.Opportunities" class="form-select"><option value="">None</option></select></div>
+<div class="col-md-6"><label asp-for="Status" class="form-label"></label><select asp-for="Status" asp-items="ViewBag.Statuses" class="form-select"></select></div>
+<div class="col-md-6"><label asp-for="AssignedToId" class="form-label">Owner</label><select asp-for="AssignedToId" asp-items="ViewBag.Owners" class="form-select"></select><span asp-validation-for="AssignedToId" class="text-danger"></span></div>
+<div class="col-12"><label asp-for="Remarks" class="form-label"></label><textarea asp-for="Remarks" class="form-control" rows="3"></textarea></div>
+</div><div class="mt-4 d-flex gap-2"><button class="btn btn-primary">Save</button><a asp-action="Index" class="btn btn-outline-secondary">Cancel</a></div></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

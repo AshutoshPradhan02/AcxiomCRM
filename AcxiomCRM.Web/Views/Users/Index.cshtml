@@ -1,0 +1,5 @@
+@model IEnumerable<dynamic>
+@{ ViewData["Title"] = "Users"; }
+<div class="page-heading"><div><h1>Users</h1><p class="text-muted">Admin-only user, role, activation, and lockout status.</p></div><a class="btn btn-primary" asp-action="Create">Create User</a></div>
+<div class="content-card"><form class="row g-2 mb-3"><div class="col-md-10"><input class="form-control" name="search" value="@ViewBag.Search" placeholder="Search users" /></div><div class="col-md-2"><button class="btn btn-outline-primary w-100">Search</button></div></form>
+<table class="table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Active</th><th>Lockout</th><th></th></tr></thead><tbody>@foreach(var r in Model){<tr><td>@r.User.FullName</td><td>@r.User.Email</td><td>@r.Role</td><td>@r.User.IsActive</td><td>@(r.Locked ? "Locked" : "Open")</td><td><form asp-action="ToggleActive" asp-route-id="@r.User.Id" method="post"><button class="btn btn-sm btn-outline-secondary">Toggle active</button></form></td></tr>}</tbody></table></div>

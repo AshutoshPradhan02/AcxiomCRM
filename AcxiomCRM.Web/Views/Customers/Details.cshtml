@@ -1,0 +1,19 @@
+@model AcxiomCRM.Web.Models.Customer
+@{
+    ViewData["Title"] = "Customer Details";
+}
+<div class="page-heading">
+    <div><h1>@Model.CustomerName</h1><p class="text-muted">@Model.CustomerCode</p></div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.CustomerId">Edit</a>
+</div>
+<div class="content-card">
+    <dl class="row">
+        <dt class="col-sm-3">Email</dt><dd class="col-sm-9">@Model.Email</dd>
+        <dt class="col-sm-3">Phone</dt><dd class="col-sm-9">@Model.Phone</dd>
+        <dt class="col-sm-3">Company</dt><dd class="col-sm-9">@Model.CompanyName</dd>
+        <dt class="col-sm-3">Address</dt><dd class="col-sm-9">@Model.Address, @Model.City, @Model.State</dd>
+        <dt class="col-sm-3">Status</dt><dd class="col-sm-9">@Model.Status</dd>
+        <dt class="col-sm-3">Owner</dt><dd class="col-sm-9">@Model.AssignedTo?.FullName</dd>
+        <dt class="col-sm-3">Notes</dt><dd class="col-sm-9">@Model.Notes</dd>
+    </dl>
+</div>
