@@ -25,6 +25,30 @@ Configure development credentials locally before running the application. Do not
 
 For evaluation, use the development account credentials provided separately by the project maintainer.
 
+## Evaluation Login Credentials
+
+The following development accounts are configured for local evaluation of AcxiomCRM.
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@acxiomcrm.local` | `Admin#12345` |
+| Manager | `manager@acxiomcrm.local` | `Manager#12345` |
+| Sales Executive | `sales@acxiomcrm.local` | `Sales#12345` |
+
+### Login Instructions
+
+1. Run the application using the instructions in the **Run** section.
+2. Open `http://localhost:5218` in your browser.
+3. Enter the email address and password for the role you want to evaluate.
+4. Verify the role-specific dashboard, permissions, and available CRM modules.
+
+### Important Notes
+
+- These are development-only credentials, not production accounts.
+- Login requires the corresponding accounts to exist in the initialized local database.
+- The application must be running on the evaluator's machine for the local URL to work.
+- For security, do not publish these credentials in a public repository. Share them separately through an approved private channel when required.
+
 ## Architecture
 
 - `Controllers`: MVC and API endpoints
